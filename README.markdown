@@ -16,7 +16,7 @@ Uses a simple and fast algorithm to recognize major browsers.
 PHP provides a native function to detect user browser: [get_browser()](http://us2.php.net/manual/en/function.get-browser.php).
 get_browser() requires the "browscap.ini" file which is 300KB+.
 Loading and processing this file impact script performance.
-And sometimes, the production server just doesn't provide it.
+And sometimes, the production server just doesn't provide browscap.ini.
 
 Although get_browser() surely provides excellent detection results, in most
 cases a much simpler method can be just as effective.
