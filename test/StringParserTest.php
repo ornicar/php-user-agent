@@ -1,7 +1,7 @@
 <?php
 
 require_once dirname(__FILE__).'/vendor/lime.php';
-require_once dirname(__FILE__).'/../lib/phpUserAgentParser.php';
+require_once dirname(__FILE__).'/../lib/phpUserAgentStringParser.php';
 
 $tests = array(
   // Namoroka Ubuntu
@@ -83,7 +83,7 @@ $tests = array(
 
 $t = new lime_test(count($tests));
 
-$parser = new phpUserAgentParser();
+$parser = new phpUserAgentStringParser();
 
 foreach($tests as $userAgentString => $userAgentArray)
 {

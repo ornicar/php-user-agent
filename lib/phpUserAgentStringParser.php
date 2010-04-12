@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Simple PHP User Agent Parser
+ * Simple PHP User Agent string parser
  */
 
-class phpUserAgentParser
+class phpUserAgentStringParser
 {
   /**
    * Parse a user agent string.
