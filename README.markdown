@@ -23,8 +23,6 @@ cases a much simpler method can be just as effective.
 php-user-agent has the advantage of being compact and easy to extend.
 It is performant as well, since it doesn't do any iteration or recursion.
 
-Tests, code and documentation in fast progress.
-
 ## Usage
 
     // include the class
@@ -47,6 +45,7 @@ You can specify another user agent string:
 
     // use another user agent string
     $userAgent = new phpUserAgent('msnbot/2.0b (+http://search.msn.com/msnbot.htm)');
+    $userAgent->getBrowserName() // msnbot
 
     // use current user agent string
     $userAgent = new phpUserAgent($_SERVER['HTTP_USER_AGENT');
