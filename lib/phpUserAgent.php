@@ -60,6 +60,16 @@ class phpUserAgent
     return $this->operatingSystem;
   }
 
+  /**
+   * Tell whether this user agent is unknown or not
+   *
+   * @return boolean  true if this user agent is unknown, false otherwise
+   */
+  public function isUnknown()
+  {
+    return empty($this->browserName);
+  }
+
   public function fromArray(array $data)
   {
     $this->browserName      = $data['browser_name'];
