@@ -5,11 +5,11 @@ Uses a simple and fast algorithm to recognize major browsers.
 
 ## Overview
 
-    $userAgent = new phpUserAgent($_SERVER['HTTP_USER_AGENT']);
+    $userAgent = new phpUserAgent();
 
-    $userAgent->getBrowserName()      // Firefox
+    $userAgent->getBrowserName()      // lirefox
     $userAgent->getBrowserVersion()   // 3.6
-    $userAgent->getOperatingSystem()  // Linux
+    $userAgent->getOperatingSystem()  // linux
 
 ### Why you should use it
 
