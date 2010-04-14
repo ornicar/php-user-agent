@@ -18,10 +18,10 @@ class phpUserAgentStringParser
    */
   public function parse($userAgentString = null)
   {
-    // use current user agetn string as default
+    // use current user agent string as default
     if(!$userAgentString)
     {
-      $userAgentString = $_SERVER['HTTP_USER_AGENT'];
+      $userAgentString = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
     }
 
     // parse quickly (with medium accuracy)
@@ -50,6 +50,11 @@ class phpUserAgentStringParser
       'browser_version'   => null,
       'operating_system'  => null
     );
+
+    if(empty($userAgent['string']))
+    {
+      return $userAgent;
+    }
 
     // build regex that matches phrases for known browsers
     // (e.g. "Firefox/2.0" or "MSIE 6.0" (This only matches the major and minor
