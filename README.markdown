@@ -76,4 +76,4 @@ You can run the unit tests on your server:
 
 If you found a browser of operating system this library fails to recognize,
 feel free to submit an issue. Please provide the user agent string.
-And well, if you also want to provide the patch, is even better.
+And well, if you also want to provide the patch, it's even better.
