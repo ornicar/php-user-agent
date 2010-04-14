@@ -16,6 +16,7 @@ require_once(dirname(__FILE__).'/phpUserAgentStringParser.php');
 
 class phpUserAgent
 {
+  protected $userAgentString;
   protected $browserName;
   protected $browserVersion;
   protected $operatingSystem;
@@ -86,6 +87,26 @@ class phpUserAgent
   }
 
   /**
+   * Get the user agent string
+   *
+   * @return  string the user agent string
+   */
+  public function getUserAgentString()
+  {
+    return $this->userAgentString;
+  }
+
+  /**
+   * Set the user agent string
+   *
+   * @param   string $userAgentString the user agent string
+   */
+  public function setUserAgentString($userAgentString)
+  {
+    $this->userAgentString = $userAgentString;
+  }
+
+  /**
    * Tell whether this user agent is unknown or not
    *
    * @return boolean  true if this user agent is unknown, false otherwise
@@ -108,12 +129,19 @@ class phpUserAgent
     return $this->getFullName();
   }
 
+  /**
+   * Configure the user agent from a user agent string
+   * @param   string                    $userAgentString        the user agent string
+   * @param   phpUserAgentStringParser  $userAgentStringParser  the parser used to parse the string
+   */
   public function configureFromUserAgentString($userAgentString, phpUserAgentStringParser $userAgentStringParser = null)
   {
     if(null === $userAgentStringParser)
     {
       $userAgentStringParser = new phpUserAgentStringParser();
     }
+
+    $this->setUserAgentString($userAgentString);
 
     $this->fromArray($userAgentStringParser->parse($userAgentString));
   }
