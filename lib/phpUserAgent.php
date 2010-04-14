@@ -22,12 +22,7 @@ class phpUserAgent
 
   public function __construct($userAgentString = null, phpUserAgentStringParser $userAgentStringParser = null)
   {
-    if(null === $userAgentStringParser)
-    {
-      $userAgentStringParser = new phpUserAgentStringParser();
-    }
-
-    $this->fromArray($userAgentStringParser->parse($userAgentString));
+    $this->configureFromUserAgentString($userAgentString, $userAgentStringParser);
   }
 
   /**
@@ -41,6 +36,16 @@ class phpUserAgent
   }
 
   /**
+   * Set the browser name
+   *
+   * @param   string  $name the browser name
+   */
+  public function setBrowserName($name)
+  {
+    $this->browserName = $name;
+  }
+
+  /**
    * Get the browser version
    *
    * @return string the browser version
@@ -51,13 +56,33 @@ class phpUserAgent
   }
 
   /**
+   * Set the browser version
+   *
+   * @param   string  $version the browser version
+   */
+  public function setBrowserVersion($version)
+  {
+    $this->browserVersion = $version;
+  }
+
+  /**
    * Get the operating system name
    *
-   * @return string the operating system name
+   * @return  string the operating system name
    */
   public function getOperatingSystem()
   {
     return $this->operatingSystem;
+  }
+
+  /**
+   * Set the operating system name
+   *
+   * @param   string $operatingSystem the operating system name
+   */
+  public function setOperatingSystem($operatingSystem)
+  {
+    $this->operatingSystem = $operatingSystem;
   }
 
   /**
@@ -70,10 +95,52 @@ class phpUserAgent
     return empty($this->browserName);
   }
 
+  /**
+   * @return string combined browser name and version
+   */
+  public function getFullName()
+  {
+    return $this->getBrowserName().' '.$this->getBrowserVersion();
+  }
+
+  public function __toString()
+  {
+    return $this->getFullName();
+  }
+
+  public function configureFromUserAgentString($userAgentString, phpUserAgentStringParser $userAgentStringParser = null)
+  {
+    if(null === $userAgentStringParser)
+    {
+      $userAgentStringParser = new phpUserAgentStringParser();
+    }
+
+    $this->fromArray($userAgentStringParser->parse($userAgentString));
+  }
+
+  /**
+   * Convert the user agent to a data array
+   *
+   * @return  array data
+   */
+  public function toArray()
+  {
+    return array(
+      'browser_name'      => $this->getBrowserName(),
+      'browser_version'   => $this->getBrowserVersion(),
+      'operating_system'  => $this->getOperatingSystem()
+    );
+  }
+
+  /**
+   * Configure the user agent from a data array
+   *
+   * @param array $data
+   */
   public function fromArray(array $data)
   {
-    $this->browserName      = $data['browser_name'];
-    $this->browserVersion   = $data['browser_version'];
-    $this->operatingSystem  = $data['operating_system'];
+    $this->setBrowserName($data['browser_name']);
+    $this->setBrowserVersion($data['browser_version']);
+    $this->setOperatingSystem($data['operating_system']);
   }
 }
