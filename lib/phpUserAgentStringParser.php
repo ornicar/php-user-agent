@@ -48,7 +48,8 @@ class phpUserAgentStringParser
       'string'            => $this->cleanUserAgentString($userAgentString),
       'browser_name'      => null,
       'browser_version'   => null,
-      'operating_system'  => null
+      'operating_system'  => null,
+      'engine'            => null
     );
 
     if(empty($userAgent['string']))
@@ -90,6 +91,17 @@ class phpUserAgentStringParser
       }
     }
 
+    // Find engine
+    $pattern = '#'.join('|', $this->getKnownEngines()).'#';
+    
+    if (preg_match($pattern, $userAgent['string'], $match))
+    {
+      if (isset($match[0]))
+      {
+        $userAgent['engine'] = $match[0];
+      }
+    }
+
     return $userAgent;
   }
 
@@ -110,6 +122,9 @@ class phpUserAgentStringParser
     // replace operating system names with their aliases
     $userAgentString = strtr($userAgentString, $this->getKnownOperatingSystemAliases());
 
+    // replace engine names with their aliases
+    $userAgentString = strtr($userAgentString, $this->getKnownEngineAliases());
+
     return $userAgentString;
   }
 
@@ -124,7 +139,8 @@ class phpUserAgentStringParser
       'filterGoogleChrome',
       'filterSafariVersion',
       'filterOperaVersion',
-      'filterYahoo'
+      'filterYahoo',
+      'filterMsie'
     );
   }
 
@@ -206,6 +222,31 @@ class phpUserAgentStringParser
   }
 
   /**
+   * Get known engines
+   *
+   * @return  array the engines
+   */
+  protected function getKnownEngines()
+  {
+    return array(
+      'gecko',
+      'webkit',
+      'trident',
+      'presto'
+    );
+  }
+
+  /**
+   * Get known engines aliases
+   *
+   * @return  array the engines aliases
+   */
+  protected function getKnownEngineAliases()
+  {
+    return array();
+  }
+
+  /**
    * Filters
    */
 
@@ -251,6 +292,17 @@ class phpUserAgentStringParser
     if (null === $userAgent['browser_name'] && strpos($userAgent['string'], 'yahoo! slurp'))
     {
       $userAgent['browser_name'] = 'yahoobot';
+    }
+  }
+
+  /**
+   * MSIE does not always declare its engine
+   */
+  protected function filterMsie(array &$userAgent)
+  {
+    if ('msie' === $userAgent['browser_name'] && empty($userAgent['engine']))
+    {
+      $userAgent['engine'] = 'trident';
     }
   }
 }

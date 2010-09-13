@@ -20,6 +20,7 @@ class phpUserAgent
   protected $browserName;
   protected $browserVersion;
   protected $operatingSystem;
+  protected $engine;
 
   public function __construct($userAgentString = null, phpUserAgentStringParser $userAgentStringParser = null)
   {
@@ -84,6 +85,26 @@ class phpUserAgent
   public function setOperatingSystem($operatingSystem)
   {
     $this->operatingSystem = $operatingSystem;
+  }
+
+  /**
+   * Get the engine name
+   *
+   * @return  string the engine name
+   */
+  public function getEngine()
+  {
+    return $this->engine;
+  }
+
+  /**
+   * Set the engine name
+   *
+   * @param   string $operatingSystem the engine name
+   */
+  public function setEngine($engine)
+  {
+    $this->engine = $engine;
   }
 
   /**
@@ -170,5 +191,6 @@ class phpUserAgent
     $this->setBrowserName($data['browser_name']);
     $this->setBrowserVersion($data['browser_version']);
     $this->setOperatingSystem($data['operating_system']);
+    $this->setEngine($data['engine']);
   }
 }
