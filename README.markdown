@@ -10,6 +10,7 @@ Uses a simple and fast algorithm to recognize major browsers.
     $userAgent->getBrowserName()      // firefox
     $userAgent->getBrowserVersion()   // 3.6
     $userAgent->getOperatingSystem()  // linux
+    $userAgent->getEngine()           // gecko
 
 ### Why you should use it
 
