@@ -35,6 +35,7 @@ It is performant as well, since it doesn't do any iteration or recursion.
     $userAgent->getBrowserName()      // firefox
     $userAgent->getBrowserVersion()   // 3.6
     $userAgent->getOperatingSystem()  // linux
+    $userAgent->getEngine()           // gecko
 
 ## Advanced
 
