@@ -27,6 +27,7 @@ class phpUserAgentStringParser
     // parse quickly (with medium accuracy)
     $informations = $this->doParse($userAgentString);
 
+
     // run some filters to increase accuracy
     foreach($this->getFilters() as $filter)
     {
@@ -140,7 +141,8 @@ class phpUserAgentStringParser
       'filterSafariVersion',
       'filterOperaVersion',
       'filterYahoo',
-      'filterMsie'
+      'filterMsie',
+      'filterAndroid',
     );
   }
 
@@ -305,4 +307,15 @@ class phpUserAgentStringParser
       $userAgent['engine'] = 'trident';
     }
   }
+
+    /**
+     * Android has a safari like signature
+     */
+    protected function filterAndroid(array &$userAgent) {
+        if ('safari' === $userAgent['browser_name'] && strpos($userAgent['string'], 'android ')) {
+            $userAgent['browser_name'] = 'android';
+            $userAgent['operating_system'] = 'android';
+            $userAgent['browser_version'] = preg_replace('|.+android ([0-9]+(?:\.[0-9]+)+).+|', '$1', $userAgent['string']);
+        }
+    }
 }
