@@ -315,7 +315,7 @@ class phpUserAgentStringParser
         if ('safari' === $userAgent['browser_name'] && strpos($userAgent['string'], 'android ')) {
             $userAgent['browser_name'] = 'android';
             $userAgent['operating_system'] = 'android';
-            $userAgent['browser_version'] = preg_replace('|.+android ([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
+            $userAgent['browser_version'] = preg_replace('|.+android ([0-9]+(?:\.[0-9]+)+).+|', '$1', $userAgent['string']);
         }
     }
 }
