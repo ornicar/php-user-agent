@@ -99,6 +99,10 @@ $tests = array(
 
     'Mozilla/5.0 (Linux; U; Android 2.3.6; ru-ru; GT-B5512 Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1' =>
     array('android', '2.3.6', 'android', 'webkit'),
+
+    // Nexus 7
+    'Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166  Safari/535.19' =>
+    array('android', '4.1.1', 'android', 'webkit'),
 );
 
 $t = new lime_test(count($tests));
