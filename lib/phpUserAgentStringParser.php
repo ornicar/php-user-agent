@@ -137,12 +137,12 @@ class phpUserAgentStringParser
   public function getFilters()
   {
     return array(
+      'filterAndroid',
       'filterGoogleChrome',
       'filterSafariVersion',
       'filterOperaVersion',
       'filterYahoo',
       'filterMsie',
-      'filterAndroid',
     );
   }
 
