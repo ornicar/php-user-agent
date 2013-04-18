@@ -1,0 +1,21 @@
+{
+    "name": "ornicar/php-user-agent",
+    "type": "library",
+    "keywords": [ "user-agent" ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thibault Duplessis",
+            "email": "thibault.duplessis@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "files": [
+            "lib/phpUserAgent.php",
+            "lib/phpUserAgentStringParser.php"
+        ]
+    }
+}
