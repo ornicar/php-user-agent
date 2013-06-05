@@ -12,7 +12,9 @@
  * Tickets:       http://github.com/ornicar/php-user-agent/issues
  */
 
-require_once(dirname(__FILE__).'/phpUserAgentStringParser.php');
+if (!class_exists('phpUserAgentStringParser')) {
+  require_once(dirname(__FILE__).'/phpUserAgentStringParser.php');
+}
 
 class phpUserAgent
 {
