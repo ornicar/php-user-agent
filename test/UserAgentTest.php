@@ -2,6 +2,7 @@
 
 require_once dirname(__FILE__).'/vendor/lime.php';
 require_once dirname(__FILE__).'/../lib/phpUserAgent.php';
+require_once dirname(__FILE__).'/../lib/phpUserAgentStringParser.php';
 
 $t = new lime_test(10);
 
