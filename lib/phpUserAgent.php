@@ -12,10 +12,6 @@
  * Tickets:       http://github.com/ornicar/php-user-agent/issues
  */
 
-if (!class_exists('phpUserAgentStringParser')) {
-  require_once(dirname(__FILE__).'/phpUserAgentStringParser.php');
-}
-
 class phpUserAgent
 {
   protected $userAgentString;
