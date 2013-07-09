@@ -5,12 +5,14 @@ Uses a simple and fast algorithm to recognize major browsers.
 
 ## Overview
 
-    $userAgent = new phpUserAgent();
+``` php
+$userAgent = new phpUserAgent();
 
-    $userAgent->getBrowserName()      // firefox
-    $userAgent->getBrowserVersion()   // 3.6
-    $userAgent->getOperatingSystem()  // linux
-    $userAgent->getEngine()           // gecko
+$userAgent->getBrowserName()      // firefox
+$userAgent->getBrowserVersion()   // 3.6
+$userAgent->getOperatingSystem()  // linux
+$userAgent->getEngine()           // gecko
+```
 
 ### Why you should use it
 
@@ -26,17 +28,20 @@ It is performant as well, since it doesn't do any iteration or recursion.
 
 ## Usage
 
-    // include the class
-    require_once '/path/to/php-user-agent/phpUserAgent.php';
+``` php
+// include classes or rely on Composer autoloader
+require_once '/path/to/php-user-agent/phpUserAgent.php';
+require_once '/path/to/php-user-agent/phpUserAgentStringParser.php';
 
-    // Create a user agent
-    $userAgent = new phpUserAgent();
+// Create a user agent
+$userAgent = new phpUserAgent();
 
-    // Interrogate the user agent
-    $userAgent->getBrowserName()      // firefox
-    $userAgent->getBrowserVersion()   // 3.6
-    $userAgent->getOperatingSystem()  // linux
-    $userAgent->getEngine()           // gecko
+// Interrogate the user agent
+$userAgent->getBrowserName()      // firefox
+$userAgent->getBrowserVersion()   // 3.6
+$userAgent->getOperatingSystem()  // linux
+$userAgent->getEngine()           // gecko
+```
 
 ## Advanced
 
@@ -45,34 +50,40 @@ It is performant as well, since it doesn't do any iteration or recursion.
 When you create a phpUserAgent object, the current user agent string is used.
 You can specify another user agent string:
 
-    // use another user agent string
-    $userAgent = new phpUserAgent('msnbot/2.0b (+http://search.msn.com/msnbot.htm)');
-    $userAgent->getBrowserName() // msnbot
+``` php
+// use another user agent string
+$userAgent = new phpUserAgent('msnbot/2.0b (+http://search.msn.com/msnbot.htm)');
+$userAgent->getBrowserName() // msnbot
 
-    // use current user agent string
-    $userAgent = new phpUserAgent($_SERVER['HTTP_USER_AGENT');
-    // this is equivalent to:
-    $userAgent = new phpUserAgent();
+// use current user agent string
+$userAgent = new phpUserAgent($_SERVER['HTTP_USER_AGENT');
+// this is equivalent to:
+$userAgent = new phpUserAgent();
+```
 
 ### Custom parser class
 
 By default, phpUserAgentStringParser is used to analyse the user agent string.
 You can replace the parser instance and customize it to match your needs:
 
-    // create a custom user agent string parser
-    class myUserAgentStringParser extends phpUserAgentStringParser
-    {
-      // override methods
-    }
+``` php
+// create a custom user agent string parser
+class myUserAgentStringParser extends phpUserAgentStringParser
+{
+  // override methods
+}
 
-    // inject the custom parser when creating a user agent:
-    $userAgent = new phpUserAgent(null, new myUserAgentStringParser());
+// inject the custom parser when creating a user agent:
+$userAgent = new phpUserAgent(null, new myUserAgentStringParser());
+```
 
 ## Run tests
 
 You can run the unit tests on your server:
 
-    php prove.php
+``` bash
+$ php prove.php
+```
 
 ## Contribute
 
